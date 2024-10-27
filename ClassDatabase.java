@@ -6,7 +6,7 @@ package lab4;
 
 /**
  *
- * @author TULIPE
+ * @author Doma & Moatassem
  */
 public class ClassDatabase {
     
