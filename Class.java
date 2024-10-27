@@ -38,7 +38,7 @@ public class Class implements Record {
 
     @Override
     public String getSearchKey() {
-        return "";
+        return this.classID;
     }
 
 

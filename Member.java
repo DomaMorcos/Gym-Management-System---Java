@@ -32,7 +32,7 @@ public class Member implements Record {
 
     @Override
     public String getSearchKey() {
-        return "";
+        return this.memberID;
     }
 
 
