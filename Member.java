@@ -9,15 +9,15 @@ package lab4;
  * @author Doma & Moatassem
  */
 public class Member {
-    private String memberId;
+    private String memberID;
     private String name;
     private String membershipType;
     private String email;
     private String phoneNumber;
     private String status;
 
-    public Member(String memberId, String name, String membershipType, String email, String phoneNumber, String status) {
-        this.memberId = memberId;
+    public Member(String memberID, String name, String membershipType, String email, String phoneNumber, String status) {
+        this.memberID = memberID;
         this.name = name;
         this.membershipType = membershipType;
         this.email = email;
