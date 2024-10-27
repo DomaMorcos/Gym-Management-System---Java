@@ -9,5 +9,6 @@ package lab4;
  * @author Doma & Moatassem
  */
 public interface Record {
-    
+    public String lineRepresentation();
+    public String getSearchKey();
 }
