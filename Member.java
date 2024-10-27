@@ -8,7 +8,7 @@ package lab4;
  *
  * @author Doma & Moatassem
  */
-public class Member {
+public class Member implements Record {
     private String memberID;
     private String name;
     private String membershipType;
@@ -24,4 +24,16 @@ public class Member {
         this.phoneNumber = phoneNumber;
         this.status = status;
     }
+
+    @Override
+    public String lineRepresentation(){
+        return this.memberID + "," + this.name + "," + this.status + "," + this.email + "," + this.phoneNumber + "," + this.membershipType;
+    }
+
+    @Override
+    public String getSearchKey() {
+        return "";
+    }
+
+
 }

@@ -8,7 +8,7 @@ package lab4;
  *
  * @author Doma & Moatassem
  */
-public class Class {
+public class Class implements Record {
     private String classID;
     private String className;
     private String trainerId;
@@ -22,4 +22,24 @@ public class Class {
         this.duration = duration;
         this.availableSeats = availableSeats;
     }
+
+    public int getAvailableSeats() {
+        return availableSeats;
+    }
+
+    public void setAvailableSeats(int availableSeats) {
+        this.availableSeats = availableSeats;
+    }
+
+    @Override
+    public String lineRepresentation(){
+        return this.classID + "," + this.className + "," + this.trainerId + "," + this.duration + "," + this.availableSeats;
+    }
+
+    @Override
+    public String getSearchKey() {
+        return "";
+    }
+
+
 }
