@@ -8,7 +8,7 @@ package lab4;
  *
  * @author Doma & Moatassem
  */
-public class Trainer {
+public class Trainer implements Record {
     private String trainerID;
     private String name;
     private String email;
@@ -22,5 +22,13 @@ public class Trainer {
         this.speciality = speciality;
         this.phoneNumber = phoneNumber;
     }
-
+    @Override 
+    public String lineRepresentation(){
+        return this.trainerID+","+this.name+","+this.email+","+this.speciality+","+this.phoneNumber;
+    }
+    
+    @Override 
+    public String getSearchKey() {
+        return this.trainerID;
+    }
 }
