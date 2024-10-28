@@ -14,7 +14,7 @@ public class ClassDatabase extends Database {
     }
 
     @Override
-    public Record createRecordFrom(String line){
+    public Class createRecordFrom(String line){
         String[] info = line.split(",");
         if (info.length == 5){
             return new Class(info[0],info[1],info[2],Integer.parseInt(info[3]),Integer.parseInt(info[4]));

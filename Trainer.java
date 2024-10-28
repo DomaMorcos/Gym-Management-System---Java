@@ -9,6 +9,7 @@ package lab4;
  * @author Doma & Moatassem
  */
 public class Trainer implements Record {
+
     private String trainerID;
     private String name;
     private String email;
@@ -23,12 +24,12 @@ public class Trainer implements Record {
         this.phoneNumber = phoneNumber;
     }
 
-    @Override 
-    public String lineRepresentation(){
-        return String.join(",",trainerID,name,email,speciality,phoneNumber);
+    @Override
+    public String lineRepresentation() {
+        return String.join(",", trainerID, name, email, speciality, phoneNumber);
     }
-    
-    @Override 
+
+    @Override
     public String getSearchKey() {
         return trainerID;
     }

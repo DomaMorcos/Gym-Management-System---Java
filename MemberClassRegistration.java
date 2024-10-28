@@ -24,6 +24,11 @@ public class MemberClassRegistration implements Record{
         this.registrationStatus = registrationStatus;
         this.registrationDate = registrationDate;
     }
+        public MemberClassRegistration(String memberID, String classID, LocalDate registrationDate) {
+        this.memberID = memberID;
+        this.classID = classID;
+        this.registrationDate = registrationDate;
+    }
 
     public String getMemberID() {
         return memberID;

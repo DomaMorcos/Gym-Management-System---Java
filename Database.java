@@ -84,7 +84,6 @@ public abstract class Database {
             for (Record record : records) {
                 writer.println(record.lineRepresentation());
             }
-            writer.println();
             writer.flush();
             writer.close();
         }

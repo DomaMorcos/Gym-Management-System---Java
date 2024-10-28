@@ -14,7 +14,7 @@ public class TrainerDatabase extends Database {
     }
 
     @Override
-    public Record createRecordFrom(String line){
+    public Trainer createRecordFrom(String line){
         String[] info = line.split(",");
         if (info.length == 5){
             return new Trainer(info[0],info[1],info[2],info[3],info[4]);
