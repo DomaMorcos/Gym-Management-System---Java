@@ -27,13 +27,11 @@ public class Member implements Record {
 
     @Override
     public String lineRepresentation(){
-        return this.memberID + "," + this.name + "," + this.status + "," + this.email + "," + this.phoneNumber + "," + this.membershipType;
+        return String.join(",",memberID,name,membershipType,email,phoneNumber,status);
     }
 
     @Override
     public String getSearchKey() {
-        return this.memberID;
+        return memberID;
     }
-
-
 }

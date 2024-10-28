@@ -17,38 +17,36 @@ public class MemberClassRegistration implements Record{
     private String registrationStatus;
     private LocalDate registrationDate;
 
-    public MemberClassRegistration(String memberID, String classID, String status, LocalDate registrationDate) {
+    public MemberClassRegistration(String memberID, String classID, String registrationStatus, LocalDate registrationDate) {
         this.memberID = memberID;
         this.classID = classID;
-        this.registrationStatus = status;
+        this.registrationStatus = registrationStatus;
         this.registrationDate = registrationDate;
     }
 
     public String getMemberID() {
-        return this.memberID;
+        return memberID;
     }
 
     public String getClassID() {
-        return this.classID;
+        return classID;
     }
 
     public LocalDate getRegistrationDate() {
-        return this.registrationDate;
+        return registrationDate;
     }
     
-    public void setRegistrationStatus(String status){
-        this.registrationStatus = status;
+    public void setRegistrationStatus(String registrationStatus){
+        this.registrationStatus = registrationStatus;
     }
     
     @Override
     public String lineRepresentation() {
-        return this.memberID + "," + this.classID+ "," + this.registrationDate + "," + this.registrationStatus;
+        return String.join(",", memberID,classID,registrationStatus,registrationDate);
     }
 
     @Override
     public String getSearchKey() {
-        return this.memberID + this.classID;
+        return memberID + "|" + classID;
     }
-
-
 }

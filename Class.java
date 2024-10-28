@@ -33,13 +33,11 @@ public class Class implements Record {
 
     @Override
     public String lineRepresentation(){
-        return this.classID + "," + this.className + "," + this.trainerId + "," + this.duration + "," + this.availableSeats;
+        return String.join(",",classID,className,trainerId,String.valueOf(duration),String.valueOf(availableSeats));
     }
 
     @Override
     public String getSearchKey() {
-        return this.classID;
+        return classID;
     }
-
-
 }

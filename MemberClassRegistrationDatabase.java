@@ -8,6 +8,16 @@ package lab4;
  *
  * @author Doma & Moatassem
  */
-public class MemberClassRegistrationDatabase {
-    
+public class MemberClassRegistrationDatabase extends Database {
+    public RegistrationDatabase(String filename) {
+        super(filename);
+    }
+
+    public Record createRecordFrom(String line){
+        String[] info = line.split(",");
+        if (info.length == 4){
+            return new MemberClassRegistration(info[0],info[1],info[2],(info[3]));
+        }
+        return null;
+    }
 }

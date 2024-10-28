@@ -22,13 +22,14 @@ public class Trainer implements Record {
         this.speciality = speciality;
         this.phoneNumber = phoneNumber;
     }
+
     @Override 
     public String lineRepresentation(){
-        return this.trainerID+","+this.name+","+this.email+","+this.speciality+","+this.phoneNumber;
+        return String.join(",",trainerID,name,email,speciality,phoneNumber);
     }
     
     @Override 
     public String getSearchKey() {
-        return this.trainerID;
+        return trainerID;
     }
 }
