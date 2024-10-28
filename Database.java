@@ -1,62 +1,93 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
-
 package lab4;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
  * @author Doma & Moatassem
  */
 public abstract class Database {
+
     private ArrayList<Record> records;
     private String filename;
 
-    public Database(String filename){
+    public Database(String filename) {
         this.records = new ArrayList<>();
         this.filename = filename;
     }
 
-    public void readFromFile(){
+    public void readFromFile() throws FileNotFoundException {
+        File file = new File(filename);
+        try (Scanner scan = new Scanner(file)) {
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                Record record = createRecordFrom(line);
+                if (record != null) {
+                    records.add(record);
+                }
+                scan.close();
+            }
+
+        }
 
     }
 
     public abstract Record createRecordFrom(String line);
 
-    public ArrayList<Record>  returnAllRecords() {
-        return new ArrayList<>(records);
+    public ArrayList<Record> returnAllRecords() {
+        return records;
     }
 
-    public boolean contains(String searchKey){
-        for (Record record:records){
-            if (searchKey.equals(record.getSearchKey()))
+    public boolean contains(String searchKey) {
+        for (Record record : records) {
+            if (searchKey.equals(record.getSearchKey())) {
                 return true;
+            }
         }
         return false;
     }
 
     public Record getRecord(String searchKey) {
         for (Record record : records) {
-            if (searchKey.equals(record.getSearchKey()))
+            if (searchKey.equals(record.getSearchKey())) {
                 return record;
+            }
         }
         return null;
     }
 
-    public void insertRecord(Record record){
-        //if (record.getSearchKey())
+    public void insertRecord(Record record) throws IOException {
+        if (this.contains(record.getSearchKey())) {
+            return;
+        }
         records.add(record);
-        saveToFile();
+        this.saveToFile();
     }
 
-    public void deleteRecord(String searchKey){
+    public void deleteRecord(String searchKey) throws IOException {
         records.removeIf(record -> record.getSearchKey().equals(searchKey));
-        saveToFile();
+        this.saveToFile();
     }
 
-    public void saveToFile(){
+    public void saveToFile() throws IOException {
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filename, false))) {
+            for (Record record : records) {
+                writer.println(record.lineRepresentation());
+            }
+            writer.println();
+            writer.flush();
+            writer.close();
+        }
 
     }
 }

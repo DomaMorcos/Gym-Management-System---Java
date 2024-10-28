@@ -5,6 +5,7 @@
 package lab4;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -42,7 +43,9 @@ public class MemberClassRegistration implements Record{
     
     @Override
     public String lineRepresentation() {
-        return String.join(",", memberID,classID,registrationStatus,registrationDate);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = registrationDate.format(formatter);
+        return String.join(",", memberID,classID,registrationStatus,formattedDate);
     }
 
     @Override
