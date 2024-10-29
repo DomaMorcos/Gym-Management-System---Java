@@ -17,11 +17,10 @@ import java.util.Scanner;
  */
 public abstract class Database {
 
-    private ArrayList<Record> records;
+    private ArrayList<Record> records = new ArrayList<>();
     private String filename;
 
     public Database(String filename) {
-        this.records = new ArrayList<>();
         this.filename = filename;
     }
 
@@ -70,7 +69,6 @@ public abstract class Database {
             return;
         }
         records.add(record);
-        this.saveToFile();
     }
 
     public void deleteRecord(String searchKey) throws IOException {

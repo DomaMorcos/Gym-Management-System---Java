@@ -19,21 +19,24 @@ public class TrainerRole {
     private ClassDatabase classDatabase;
     private MemberClassRegistrationDatabase registrationDatabase;
 
-    public TrainerRole(MemberDatabase memberDatabase, ClassDatabase classDatabase, MemberClassRegistrationDatabase registrationDatabase) {
-        this.memberDatabase = memberDatabase;
-        this.classDatabase = classDatabase;
-        this.registrationDatabase = registrationDatabase;
+    public TrainerRole() {
+        this.memberDatabase = new MemberDatabase("Members.txt");
+        this.classDatabase = new ClassDatabase("Classes.txt");
+        this.registrationDatabase = new MemberClassRegistrationDatabase("Registrations.txt");
     }
-    public TrainerRole(){
-    }
+
 
     public void addMember(String memberID, String name, String membershipType, String email, String phonenumber, String status) throws IOException {
         Member member = new Member(memberID, name, membershipType, email, phonenumber, status);
         memberDatabase.insertRecord(member);
     }
 
-    public ArrayList<Record> getListOfMembers() {
-        return memberDatabase.returnAllRecords();
+    public ArrayList<Member> getListOfMembers() {
+        ArrayList<Member> records = new ArrayList();
+        for (Record record : classDatabase.returnAllRecords()) {
+            records.add((Member) record);
+        }
+        return records;
     }
 
     public void addClass(String classID, String className, String trainerID, int duration, int maxParticipants) throws IOException {
@@ -41,8 +44,12 @@ public class TrainerRole {
         classDatabase.insertRecord(newClass);
     }
 
-    public ArrayList<Record> getListOfClasses() {
-        return classDatabase.returnAllRecords();
+    public ArrayList<Class> getListOfClasses() {
+        ArrayList<Class> records = new ArrayList();
+        for (Record record : classDatabase.returnAllRecords()) {
+            records.add((Class) record);
+        }
+        return records;
     }
 
     public boolean registerMemberForClass(String memberID, String classID, LocalDate registrationDate) throws IOException {

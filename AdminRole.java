@@ -12,27 +12,32 @@ import java.util.ArrayList;
  * @author Doma & Moatassem
  */
 public class AdminRole {
+
     private TrainerDatabase database;
 
-    public AdminRole(TrainerDatabase database){
-        this.database = database;
+    public AdminRole() {
+        this.database = new TrainerDatabase("Trainers.txt");
     }
 
-    public void addTrainer(String trainerID,String name ,String email,String speciality , String phoneNumber) throws IOException{
-        Trainer trainer = new Trainer(trainerID,name,email,speciality,phoneNumber);
+    public void addTrainer(String trainerID, String name, String email, String speciality, String phoneNumber) throws IOException {
+        Trainer trainer = new Trainer(trainerID, name, email, speciality, phoneNumber);
         database.insertRecord(trainer);
     }
 
-    public ArrayList<Record> getListOfTrainers () {
-        return database.returnAllRecords();
+    public ArrayList<Trainer> getListOfTrainers() {
+        ArrayList<Trainer> records = new ArrayList();
+        for (Record record : database.returnAllRecords()) {
+            records.add((Trainer) record);
+        }
+        return records;
     }
 
-    public void removeTrainer(String searchKey) throws IOException{
+    public void removeTrainer(String searchKey) throws IOException {
         database.deleteRecord(searchKey);
     }
 
     public void logout() throws IOException {
         database.saveToFile();
-        
+
     }
 }

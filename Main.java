@@ -1,7 +1,5 @@
 package lab4;
 
-import org.example.Service.AdminRole;
-import org.example.Service.TrainerRole;
 
 import java.time.LocalDate;
 
@@ -36,7 +34,7 @@ public class Main {
         // Do not Forget to Clear File
         double mark = 0;
         try {
-            AdminRole admin = AdminRole.getOnlyAdmin();
+            AdminRole admin = new AdminRole();
             // Adding Trainer Test
             admin.addTrainer("T001", "David", "david@fitlife.com", "Yoga", "0123456789");
             if (admin.getListOfTrainers().size() == 1) {
@@ -73,19 +71,23 @@ public class Main {
         try {
             TrainerRole trainer = new TrainerRole();
             // Adding Member Test
+            System.out.println("Test Test ");
             trainer.addMember("M001", "John", "Monthly", "john@gmail.com", "0123456789", "active");
             if (trainer.getListOfMembers().size() == 1) {
+                System.out.println("Test 1");
                 mark += 0.5; // 1 Mark
             }
 
             // Duplicate Member Test
             trainer.addMember("M001", "John", "Monthly", "john@gmail.com", "0123456789", "active");
             if (trainer.getListOfMembers().size() == 1) {
+                System.out.println("Test 2");
                 mark += 0.5;
             }
 
             // Verify Member Data Test
-            if (trainer.getListOfMembers().get(0).getKey().equals("M001")) {
+            if (trainer.getListOfMembers().get(0).getSearchKey().equals("M001")) {
+                System.out.println("Test 3");
                 mark += 1;
             }
             trainer.logout();
@@ -114,8 +116,8 @@ public class Main {
             }
 
             // If member preserved from member list + Register Member to Class Test
-            boolean registered = trainer.registerMemberForClass(trainer.getListOfMembers().get(0).getKey(), "C001", LocalDate.now());
-            if (registered && trainer.getListOfClasses().get(0).getAvailableSeats() == 0 && trainer.getListOfRegistrations().get(0).getKey().equals("M001-C001")) {
+            boolean registered = trainer.registerMemberForClass(trainer.getListOfMembers().get(0).getSearchKey(), "C001", LocalDate.now());
+            if (registered && trainer.getListOfClasses().get(0).getAvailableSeats() == 0 && trainer.getListOfRegistrations().get(0).getSearchKey().equals("M001-C001")) {
                 mark += 1.5;
             }
 
