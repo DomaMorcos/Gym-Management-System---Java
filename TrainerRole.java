@@ -24,6 +24,8 @@ public class TrainerRole {
         this.classDatabase = classDatabase;
         this.registrationDatabase = registrationDatabase;
     }
+    public TrainerRole(){
+    }
 
     public void addMember(String memberID, String name, String membershipType, String email, String phonenumber, String status) throws IOException {
         Member member = new Member(memberID, name, membershipType, email, phonenumber, status);
