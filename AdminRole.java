@@ -18,7 +18,8 @@ public class AdminRole {
         this.database = database;
     }
 
-    public void addTrainer(Trainer trainer) throws IOException{
+    public void addTrainer(String trainerID,String name ,String email,String speciality , String phoneNumber) throws IOException{
+        Trainer trainer = new Trainer(trainerID,name,email,speciality,phoneNumber);
         database.insertRecord(trainer);
     }
 
@@ -30,7 +31,8 @@ public class AdminRole {
         database.deleteRecord(searchKey);
     }
 
-    public void logout() {
-
+    public void logout() throws IOException {
+        database.saveToFile();
+        
     }
 }
