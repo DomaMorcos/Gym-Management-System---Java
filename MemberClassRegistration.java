@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author Doma & Moatassem
  */
-public class MemberClassRegistration implements Record{
+public class MemberClassRegistration implements Record {
 
     private String memberID;
     private String classID;
@@ -24,7 +24,8 @@ public class MemberClassRegistration implements Record{
         this.registrationStatus = registrationStatus;
         this.registrationDate = registrationDate;
     }
-        public MemberClassRegistration(String memberID, String classID, LocalDate registrationDate) {
+
+    public MemberClassRegistration(String memberID, String classID, LocalDate registrationDate) {
         this.memberID = memberID;
         this.classID = classID;
         this.registrationDate = registrationDate;
@@ -41,16 +42,16 @@ public class MemberClassRegistration implements Record{
     public LocalDate getRegistrationDate() {
         return registrationDate;
     }
-    
-    public void setRegistrationStatus(String registrationStatus){
+
+    public void setRegistrationStatus(String registrationStatus) {
         this.registrationStatus = registrationStatus;
     }
-    
+
     @Override
     public String lineRepresentation() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formattedDate = registrationDate.format(formatter);
-        return String.join(",", memberID,classID,registrationStatus,formattedDate);
+        return String.join(",", memberID, classID, registrationStatus, formattedDate);
     }
 
     @Override

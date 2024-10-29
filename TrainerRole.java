@@ -7,6 +7,7 @@ package lab4;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 /**
  *
@@ -24,25 +25,25 @@ public class TrainerRole {
         this.registrationDatabase = registrationDatabase;
     }
 
-    private void addMember(String memberID, String name, String membershipType, String email, String phonenumber, String status) throws IOException {
+    public void addMember(String memberID, String name, String membershipType, String email, String phonenumber, String status) throws IOException {
         Member member = new Member(memberID, name, membershipType, email, phonenumber, status);
         memberDatabase.insertRecord(member);
     }
 
-    private ArrayList<Record> getListOfMembers() {
+    public ArrayList<Record> getListOfMembers() {
         return memberDatabase.returnAllRecords();
     }
 
-    private void addClass(String classID, String className, String trainerID, int duration, int maxParticipants) throws IOException {
+    public void addClass(String classID, String className, String trainerID, int duration, int maxParticipants) throws IOException {
         Class newClass = new Class(classID, className, trainerID, duration, maxParticipants);
         classDatabase.insertRecord(newClass);
     }
 
-    private ArrayList<Record> getListOfClasses() {
+    public ArrayList<Record> getListOfClasses() {
         return classDatabase.returnAllRecords();
     }
 
-    private boolean registerMemberForClass(String memberID, String classID, LocalDate registrationDate) throws IOException {
+    public boolean registerMemberForClass(String memberID, String classID, LocalDate registrationDate) throws IOException {
         Class record = (Class) classDatabase.getRecord(classID);
         int recordAvailableSeats = record.getAvailableSeats();
         if (recordAvailableSeats >= 1) {
@@ -53,5 +54,34 @@ public class TrainerRole {
             return true;
         }
         return false;
+    }
+
+    public boolean cancelRegistration(String memberID, String classID) {
+        if (registrationDatabase.contains(memberID + "|" + classID)) {
+            MemberClassRegistration memberClass = (MemberClassRegistration) registrationDatabase.getRecord(memberID + "|" + classID);
+            LocalDate dateRightNow = LocalDate.now();
+
+            long daysBetween = ChronoUnit.DAYS.between(dateRightNow, memberClass.getRegistrationDate());
+            if (dateRightNow.isAfter(memberClass.getRegistrationDate()) && daysBetween < 3) {
+                System.out.println("Issuing Refund.");
+                memberClass.setRegistrationStatus("canceled");
+                return true;
+            } else {
+                System.out.println("Refund is not available because 3 or more days has passed.");
+                memberClass.setRegistrationStatus("canceled");
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public ArrayList<Record> getListOfRegistrations() {
+        return registrationDatabase.returnAllRecords();
+    }
+
+    public void logout() throws IOException {
+        registrationDatabase.saveToFile();
+
     }
 }
