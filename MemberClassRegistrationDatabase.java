@@ -4,6 +4,7 @@
  */
 package lab4;
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -13,7 +14,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class MemberClassRegistrationDatabase extends Database {
 
-    public MemberClassRegistrationDatabase(String filename) {
+    public MemberClassRegistrationDatabase(String filename) throws FileNotFoundException {
         super(filename);
     }
     

@@ -1,8 +1,6 @@
 package lab4;
 
-
 import java.time.LocalDate;
-
 
 public class Main {
 
@@ -107,18 +105,26 @@ public class Main {
             trainer.addClass("C001", "Yoga", "T001", 60, 1);
             if (trainer.getListOfClasses().size() == 1) {
                 mark += 0.5;
+                System.out.println("Test 4");
             }
 
             // Prevent Duplicate Class Test
             trainer.addClass("C001", "Yoga", "T001", 60, 1);
             if (trainer.getListOfClasses().size() == 1) {
                 mark += 0.5;
+                System.out.println("Test 5");
+
             }
 
             // If member preserved from member list + Register Member to Class Test
             boolean registered = trainer.registerMemberForClass(trainer.getListOfMembers().get(0).getSearchKey(), "C001", LocalDate.now());
-            if (registered && trainer.getListOfClasses().get(0).getAvailableSeats() == 0 && trainer.getListOfRegistrations().get(0).getSearchKey().equals("M001-C001")) {
+            if (registered) {
+                System.out.println("Boolean Test");
+            }
+            if (registered && trainer.getListOfClasses().get(0).getAvailableSeats() == 0 && trainer.getListOfRegistrations().get(0).getSearchKey().equals("M001C001")) {
                 mark += 1.5;
+                System.out.println("Test 6");
+
             }
 
             // Test Full Class Registration
@@ -126,6 +132,8 @@ public class Main {
             boolean fullRegistration = trainer.registerMemberForClass("M004", "C001", LocalDate.now());
             if (!fullRegistration) {
                 mark += 1.5;
+                System.out.println("Test 7");
+
             }
             trainer.logout();
 
@@ -142,12 +150,14 @@ public class Main {
             // Register Member for Non-Existed Class Test
             boolean registered = trainer.registerMemberForClass("M001", "C002", LocalDate.now());
             if (!registered) {
+                System.out.println("Test 8");
                 mark += 1;
             }
 
             // Register Non Exist Member for Existed Class Test
             registered = trainer.registerMemberForClass("M002", "C001", LocalDate.now());
             if (!registered) {
+                System.out.println("Test 9");
                 mark += 1;
             }
 
@@ -162,12 +172,14 @@ public class Main {
             trainer.addClass("C002", "Run", "T001", 20, 30);
             registered = trainer.registerMemberForClass("M002", "C002", LocalDate.now());
             if (registered) {
+                System.out.println("Test 10");
                 mark += 1;
             }
 
             // Cancel Registration Test (within 3 days)
             boolean cancelled = trainer.cancelRegistration("M002", "C002");
             if (cancelled && trainer.getListOfClasses().get(1).getAvailableSeats() == 30) {
+                System.out.println("Test 11");
                 mark += 1;
             }
 
@@ -175,6 +187,7 @@ public class Main {
             LocalDate oldDate = LocalDate.now().minusDays(5);
             registered = trainer.registerMemberForClass("M002", "C002", oldDate);
             if (!registered) {
+                System.out.println("Test 12");
                 mark += 1;
             }
 
@@ -182,6 +195,7 @@ public class Main {
             registered = trainer.registerMemberForClass("M003", "C002", oldDate);
             boolean invalidCancellation = trainer.cancelRegistration("M003", "C002");
             if (registered && !invalidCancellation) {
+                System.out.println("Test 13");
                 mark += 2;
             }
 

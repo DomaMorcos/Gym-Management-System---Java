@@ -4,12 +4,14 @@
  */
 package lab4;
 
+import java.io.FileNotFoundException;
+
 /**
  *
  * @author Doma & Moatassem
  */
 public class ClassDatabase extends Database {
-    public ClassDatabase (String filename){
+    public ClassDatabase (String filename) throws FileNotFoundException{
         super(filename);
     }
 

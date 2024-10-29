@@ -56,6 +56,6 @@ public class MemberClassRegistration implements Record {
 
     @Override
     public String getSearchKey() {
-        return memberID + "|" + classID;
+        return memberID  + classID;
     }
 }

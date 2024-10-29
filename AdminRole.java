@@ -4,6 +4,7 @@
  */
 package lab4;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public class AdminRole {
 
     private TrainerDatabase database;
 
-    public AdminRole() {
+    public AdminRole() throws FileNotFoundException {
         this.database = new TrainerDatabase("Trainers.txt");
     }
 

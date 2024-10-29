@@ -17,27 +17,32 @@ import java.util.Scanner;
  */
 public abstract class Database {
 
-    private ArrayList<Record> records = new ArrayList<>();
+    private ArrayList<Record> records;
     private String filename;
 
-    public Database(String filename) {
+    public Database(String filename) throws FileNotFoundException {
+        this.records = new ArrayList<>();
         this.filename = filename;
+        readFromFile();
+
     }
 
     public void readFromFile() throws FileNotFoundException {
         File file = new File(filename);
-        try (Scanner scan = new Scanner(file)) {
-            while (scan.hasNextLine()) {
-                String line = scan.nextLine();
-                Record record = createRecordFrom(line);
-                if (record != null) {
-                    records.add(record);
-                }
-                scan.close();
+        if (file.length() == 0) {
+            System.out.println("File is empty");
+            return;
+        }
+        Scanner scan = new Scanner(file);
+        while (scan.hasNextLine()) {
+            String line = scan.nextLine();
+            Record record = createRecordFrom(line);
+            if (record != null) {
+                records.add(record);
             }
 
         }
-
+        scan.close();
     }
 
     public abstract Record createRecordFrom(String line);
