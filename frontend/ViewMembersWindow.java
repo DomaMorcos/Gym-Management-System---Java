@@ -59,14 +59,7 @@ public class ViewMembersWindow extends JFrame {
 
         ArrayList<Member> members = trainerRole.getListOfMembers();
         for (Member member : members) {
-            Object[] row = {
-                    member.getSearchKey(),
-                    member.getName(),
-                    member.getMembershipType(),
-                    member.getEmail(),
-                    member.getPhoneNumber(),
-                    member.getStatus()
-            };
+            Object[] row = member.lineRepresentation().split(",");
             model.addRow(row);
         }
     }

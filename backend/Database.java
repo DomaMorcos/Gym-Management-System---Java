@@ -74,6 +74,7 @@ public abstract class Database {
             return;
         }
         records.add(record);
+        this.saveToFile();
     }
 
     public void deleteRecord(String searchKey) throws IOException {
