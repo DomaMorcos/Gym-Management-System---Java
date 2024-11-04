@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package lab4;
+package backend;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -69,7 +69,7 @@ public class TrainerRole {
         return false;
     }
     
-    public boolean cancelRegistration(String memberID, String classID) {
+    public boolean cancelRegistration(String memberID, String classID) throws IOException {
         if (registrationDatabase.contains(memberID + classID)) {
             MemberClassRegistration memberClass = (MemberClassRegistration) registrationDatabase.getRecord(memberID + classID);
             
@@ -82,7 +82,7 @@ public class TrainerRole {
                 memberClass.setRegistrationStatus("canceled");
                 Class class1 = (Class) classDatabase.getRecord(classID);
                 class1.setAvailableSeats(class1.getAvailableSeats() + 1);
-                
+               // registrationDatabase.deleteRecord(memberClass.getSearchKey());
                 return true;
             } else {
                 System.out.println("Refund is not available because 3 or more days has passed.");
