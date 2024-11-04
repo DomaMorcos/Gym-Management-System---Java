@@ -26,8 +26,9 @@ public class TrainerLoginWindow extends JFrame {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String username = usernameField.getText();
+                String username = usernameField.getText().trim();
                 String password = new String(passwordField.getPassword());
+
 
                 if (username.equals(LoginCredentials.TRAINER_USERNAME) && password.equals(LoginCredentials.TRAINER_PASSWORD)) {
                     TrainerRoleWindow trainerRole = new TrainerRoleWindow();

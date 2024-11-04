@@ -40,7 +40,7 @@ public class TrainerRoleWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AddMemberWindow addMember = new AddMemberWindow();
-                //addMember.setVisible(true);
+                addMember.setVisible(true);
                 dispose();
             }
         });
