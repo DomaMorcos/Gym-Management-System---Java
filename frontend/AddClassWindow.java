@@ -69,7 +69,7 @@ public class AddClassWindow extends JFrame {
                         }
                     }
                     if(!trainerExists){
-                        JOptionPane.showMessageDialog(AddClassP, "Trainer with the ID = " + trainerID + " does not exist!");    
+                        JOptionPane.showMessageDialog(AddClassP, "Trainer with the ID = " + trainerID + " does not exist!");
                     }
                     if (!classExists) {
                         try {
