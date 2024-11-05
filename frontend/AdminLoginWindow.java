@@ -16,7 +16,7 @@ public class AdminLoginWindow extends JFrame {
     public AdminLoginWindow() {
         setVisible(true);
         setTitle("Admin Login");
-        setSize(1280, 720);
+        setSize(500, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(AdminLogin);
         setLocationRelativeTo(null);

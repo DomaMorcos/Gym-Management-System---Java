@@ -22,7 +22,7 @@ public class AddTrainerWindow extends JFrame {
     public AddTrainerWindow() {
 
         setTitle("Add Trainer");
-        setSize(1920, 1080);
+        setSize(1200, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(AddTrainerWindow);
         setLocationRelativeTo(null);
