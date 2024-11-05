@@ -62,6 +62,9 @@ public class RegisterMemberForClassWindow extends JFrame {
                                 try {
                                     trainerRole.registerMemberForClass(memberID,classID,date);
                                     JOptionPane.showMessageDialog(RegisterMemberForClassP, "Member with ID = " + memberID + " successfully registered to class = " +classID);
+                                    TrainerRoleWindow trainerRoleWindow = new TrainerRoleWindow();
+                                    trainerRoleWindow.setVisible(true);
+                                    dispose();
                                 } catch (IOException ex) {
                                     throw new RuntimeException(ex);
                                 }
