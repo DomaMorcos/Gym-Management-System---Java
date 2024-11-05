@@ -1,7 +1,6 @@
 package frontend;
 
-import backend.Member;
-import backend.TrainerRole;
+import backend.*;
 import backend.Class;
 
 import javax.swing.*;
@@ -24,6 +23,7 @@ public class AddClassWindow extends JFrame {
     private JLabel maxParticipantsLabel;
     private JButton addButton;
     private TrainerRole trainerRole;
+    private AdminRole adminRole;
 
     public AddClassWindow() {
         setVisible(true);
@@ -35,6 +35,7 @@ public class AddClassWindow extends JFrame {
 
         try {
             this.trainerRole = new TrainerRole();
+            this.adminRole = new AdminRole();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -54,12 +55,21 @@ public class AddClassWindow extends JFrame {
                 } else {
 
                     boolean classExists = false;
+                    boolean trainerExists = false;
                     for (Class classVar : trainerRole.getListOfClasses()) {
                         if (classVar.getSearchKey().equals(classID)) {
                             JOptionPane.showMessageDialog(AddClassP, "Class with the ID = " + classID + " already exists!");
                             classExists = true;
                             break;
                         }
+                    }
+                    for (Trainer trainer : adminRole.getListOfTrainers()){
+                        if(trainer.getSearchKey().equals(trainerID)){
+                            trainerExists = true;
+                        }
+                    }
+                    if(!trainerExists){
+                        JOptionPane.showMessageDialog(AddClassP, "Trainer with the ID = " + trainerID + " does not exist!");    
                     }
                     if (!classExists) {
                         try {
