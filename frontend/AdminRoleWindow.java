@@ -19,7 +19,7 @@ public class AdminRoleWindow extends JFrame {
 
     public AdminRoleWindow() {
 
-        setTitle("Trainer Role");
+        setTitle("Admin Role");
         setSize(1920, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(AdminRoleWindow);

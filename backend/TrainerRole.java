@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+import constants.FileNames;
+
 /**
  *
  * @author Doma & Moatassem
@@ -21,9 +23,9 @@ public class TrainerRole {
     private MemberClassRegistrationDatabase registrationDatabase;
     
     public TrainerRole() throws FileNotFoundException {
-        this.memberDatabase = new MemberDatabase("Members.txt");
-        this.classDatabase = new ClassDatabase("Classes.txt");
-        this.registrationDatabase = new MemberClassRegistrationDatabase("Registrations.txt");
+        this.memberDatabase = new MemberDatabase(FileNames.MEMBER_FILENAME);
+        this.classDatabase = new ClassDatabase(FileNames.CLASS_FILENAME);
+        this.registrationDatabase = new MemberClassRegistrationDatabase(FileNames.REGISTRATION_FILENAME);
     }
     
     public void addMember(String memberID, String name, String membershipType, String email, String phonenumber, String status) throws IOException {

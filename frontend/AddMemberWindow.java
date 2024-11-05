@@ -1,5 +1,7 @@
 package frontend;
 
+import backend.Member;
+import backend.Trainer;
 import backend.TrainerRole;
 
 import javax.swing.*;
@@ -34,7 +36,7 @@ public class AddMemberWindow extends JFrame {
         setLocationRelativeTo(null);
 
         try {
-            trainerRole = new TrainerRole();
+            this.trainerRole = new TrainerRole();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -52,15 +54,26 @@ public class AddMemberWindow extends JFrame {
                 if (id.isEmpty() || name.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || membershipType.isEmpty() || status.isEmpty()) {
                     JOptionPane.showMessageDialog(AddMemberP, "Fields must be filled.");
                     return;
-                }
-                try {
-                    trainerRole.addMember(id,name,membershipType,email,phoneNumber,status);
-                    JOptionPane.showMessageDialog(AddMemberP, "The Member with Id = " + id + "has successfully added.");
-                    TrainerRoleWindow trainerRole = new TrainerRoleWindow();
-                    trainerRole.setVisible(true);
-                    dispose();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                }                else {
+                    boolean memberExists = false;
+                    for (Member member : trainerRole.getListOfMembers()) {
+                        if (member.getSearchKey().equals(id)) {
+                            JOptionPane.showMessageDialog(AddMemberP, "Member with the ID = " + id + " already exists!");
+                            memberExists = true;
+                            break;
+                        }
+                    }
+                    if (!memberExists) {
+                        try {
+                            trainerRole.addMember(id, name, email,phoneNumber,membershipType,status);
+                            JOptionPane.showMessageDialog(AddMemberP, "The Member with ID: " + id + " has been added successfully!");
+                            TrainerRoleWindow trainerRoleWindow = new TrainerRoleWindow();
+                            trainerRoleWindow.setVisible(true);
+                            dispose();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
                 }
             }
         });

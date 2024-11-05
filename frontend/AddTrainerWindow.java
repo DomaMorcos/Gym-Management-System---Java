@@ -22,7 +22,7 @@ public class AddTrainerWindow extends JFrame {
 
     public AddTrainerWindow() {
 
-        setTitle("Add Member");
+        setTitle("Add Trainer");
         setSize(1920, 1080);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(AddTrainerWindow);
@@ -48,23 +48,25 @@ public class AddTrainerWindow extends JFrame {
                     JOptionPane.showMessageDialog(AddTrainerWindow, "Please fill all the required fields!");
 
                 }
-                boolean trainerExists = false;
-                for (Trainer trainer : adminRole.getListOfTrainers()) {
-                    if (trainer.getSearchKey().equals(id)) {
-                        JOptionPane.showMessageDialog(AddTrainerWindow, "Trainer with the ID = " + id + " already exists!");
-                        trainerExists = true;
-                        break;
+                else {
+                    boolean trainerExists = false;
+                    for (Trainer trainer : adminRole.getListOfTrainers()) {
+                        if (trainer.getSearchKey().equals(id)) {
+                            JOptionPane.showMessageDialog(AddTrainerWindow, "Trainer with the ID = " + id + " already exists!");
+                            trainerExists = true;
+                            break;
+                        }
                     }
-                }
-                if (!trainerExists) {
-                    try {
-                        adminRole.addTrainer(id, name, email, speciality, phoneNumber);
-                        JOptionPane.showMessageDialog(AddTrainerWindow, "The Member with ID: " + id + " has been added successfully!");
-                        AdminRoleWindow adminRoleWindow = new AdminRoleWindow();
-                        adminRoleWindow.setVisible(true);
-                        dispose();
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
+                    if (!trainerExists) {
+                        try {
+                            adminRole.addTrainer(id, name, email, speciality, phoneNumber);
+                            JOptionPane.showMessageDialog(AddTrainerWindow, "The Member with ID: " + id + " has been added successfully!");
+                            AdminRoleWindow adminRoleWindow = new AdminRoleWindow();
+                            adminRoleWindow.setVisible(true);
+                            dispose();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 }
 

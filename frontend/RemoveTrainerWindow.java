@@ -16,8 +16,8 @@ public class RemoveTrainerWindow extends JFrame {
 
     public RemoveTrainerWindow() {
         setVisible(true);
-        setTitle("Trainer Role");
-        setSize(500, 300);
+        setTitle("Remove Trainer");
+        setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(RemoveTrainerWindow);
         setLocationRelativeTo(null);
@@ -32,24 +32,29 @@ public class RemoveTrainerWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String id = idField.getText().trim();
-                try {
-                    int flag = 0;
-                    for (Trainer trainer : adminRole.getListOfTrainers()) {
-                        if (trainer.getSearchKey().equals(id)) {
-                            flag = 1;
-                            adminRole.removeTrainer(id);
-                            JOptionPane.showMessageDialog(RemoveTrainerWindow, "Trainer with the ID = " + id + " has been deleted!");
-                            AdminRoleWindow adminRoleWindow = new AdminRoleWindow();
-                            adminRoleWindow.setVisible(true);
-                            dispose();
-                            break;
+                if(id.isEmpty()){
+                    JOptionPane.showMessageDialog(RemoveTrainerWindow,"Please fill the required field!");
+                }
+                else{
+                    try {
+                        int flag = 0;
+                        for (Trainer trainer : adminRole.getListOfTrainers()) {
+                            if (trainer.getSearchKey().equals(id)) {
+                                flag = 1;
+                                adminRole.removeTrainer(id);
+                                JOptionPane.showMessageDialog(RemoveTrainerWindow, "Trainer with the ID = " + id + " has been deleted!");
+                                AdminRoleWindow adminRoleWindow = new AdminRoleWindow();
+                                adminRoleWindow.setVisible(true);
+                                dispose();
+                                break;
+                            }
                         }
+                        if(flag == 0) {
+                            JOptionPane.showMessageDialog(RemoveTrainerWindow, "Trainer with the ID = " + id + " does not exist!");
+                        }
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
                     }
-                    if(flag == 0) {
-                        JOptionPane.showMessageDialog(RemoveTrainerWindow, "Trainer with the ID = " + id + " does not exist!");
-                    }
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
                 }
             }
         });

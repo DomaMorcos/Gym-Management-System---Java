@@ -27,7 +27,7 @@ public class ViewMembersWindow extends JFrame {
         setLocationRelativeTo(null);
 
         try {
-            trainerRole = new TrainerRole();
+            this.trainerRole = new TrainerRole();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -35,6 +35,7 @@ public class ViewMembersWindow extends JFrame {
         createTable();
         loadMembers();
 
+        backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,6 +44,10 @@ public class ViewMembersWindow extends JFrame {
                 dispose();
             }
         });
+        ViewMembersP.add(backButton, BorderLayout.SOUTH);
+
+        // Set the window to visible at the end
+        setVisible(true);
     }
 
     private void createTable() {

@@ -22,8 +22,8 @@ public class ViewTrainersWindow extends JFrame {
         // Initialize the panel and layout first
         viewTrainersPanel = new JPanel(new BorderLayout());
         setContentPane(viewTrainersPanel);
-        setTitle("View Members");
-        setSize(1920, 1080);
+        setTitle("View Trainers");
+        setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 

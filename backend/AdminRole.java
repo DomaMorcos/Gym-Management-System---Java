@@ -4,6 +4,8 @@
  */
 package backend;
 
+import constants.FileNames;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ public class AdminRole {
     private TrainerDatabase database;
 
     public AdminRole() throws FileNotFoundException {
-        this.database = new TrainerDatabase("Trainers.txt");
+        this.database = new TrainerDatabase(FileNames.TRAINER_FILENAME);
     }
 
     public void addTrainer(String trainerID, String name, String email, String speciality, String phoneNumber) throws IOException {
