@@ -19,11 +19,11 @@ public class ViewMembersWindow extends JFrame {
     private TrainerRole trainerRole;
 
     public ViewMembersWindow() {
-        setVisible(true);
-        setTitle("View Members");
-        setSize(500, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        ViewMembersP = new JPanel(new BorderLayout());
         setContentPane(ViewMembersP);
+        setTitle("View Members");
+        setSize(1920, 1080);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         try {
@@ -51,7 +51,7 @@ public class ViewMembersWindow extends JFrame {
     }
 
     private void createTable() {
-        String[] columnNames = {"Member ID", "Name", "Membership Type", "Email", "Phone Number", "Status"};
+        String[] columnNames = {"Member ID", "Name", "Email", "Phone Number", "Membership Type", "Status"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         membersTable = new JTable(model);
         tableScrollPane = new JScrollPane(membersTable);
