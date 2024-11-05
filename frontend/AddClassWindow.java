@@ -70,8 +70,9 @@ public class AddClassWindow extends JFrame {
                     }
                     if(!trainerExists){
                         JOptionPane.showMessageDialog(AddClassP, "Trainer with the ID = " + trainerID + " does not exist!");
+
                     }
-                    if (!classExists) {
+                    if (!classExists && trainerExists) {
                         try {
                             int durationINT = Integer.parseInt(duration);
                             int maxParticipantsINT = Integer.parseInt(maxParticipants);

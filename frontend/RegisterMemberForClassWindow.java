@@ -4,6 +4,7 @@ import backend.AdminRole;
 import backend.Class;
 import backend.Trainer;
 import backend.TrainerRole;
+import backend.Member;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -51,17 +52,36 @@ public class RegisterMemberForClassWindow extends JFrame {
                 return;
             } else {
                 ArrayList<Class> classes = trainerRole.getListOfClasses();
-                if(!classes.contains(classID)) {
-                    JOptionPane.showMessageDialog(RegisterMemberForClassP, "This class does not exist.");
+                boolean classExists = false;
+                boolean memberExists = false;
+                for (Class c : classes) {
+                    if(c.getSearchKey().equals(classID)) {
+                        classExists = true;
+                    }
+                }
+                ArrayList<Member> members = trainerRole.getListOfMembers();
+                for (Member m : members)
+                {
+                    if(m.getSearchKey().equals(memberID)) {
+                        memberExists = true;
+                    }
+                }
+                if(!classExists) {
+                    JOptionPane.showMessageDialog(RegisterMemberForClassP, "Class with ID = " + classID + " does not exist.");
+                }
+                if(!memberExists) {
+                    JOptionPane.showMessageDialog(RegisterMemberForClassP, "Member with ID = " + memberID + " does not exist.");
                 }
                 else {
-                    for(Class c : classes) {
-                        if(c.getSearchKey().equals(classID)) {
-                            if(c.getAvailableSeats() > 1) JOptionPane.showMessageDialog(RegisterMemberForClassP, "This class has no available seats.");
+                    for (Class c : classes) {
+                        if (c.getSearchKey().equals(classID)) {
+                            if (c.getAvailableSeats() < 1)
+                                JOptionPane.showMessageDialog(RegisterMemberForClassP, "This class has no available seats.");
                             else {
                                 try {
-                                    trainerRole.registerMemberForClass(memberID,classID,date);
-                                    JOptionPane.showMessageDialog(RegisterMemberForClassP, "Member with ID = " + memberID + " successfully registered to class = " +classID);
+                                    trainerRole.registerMemberForClass(memberID, classID, date);
+                                    JOptionPane.showMessageDialog(RegisterMemberForClassP, "Member with ID = " + memberID + " successfully registered to class = " + classID);
+                                    c.setAvailableSeats(c.getAvailableSeats() - 1);
                                     TrainerRoleWindow trainerRoleWindow = new TrainerRoleWindow();
                                     trainerRoleWindow.setVisible(true);
                                     dispose();

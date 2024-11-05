@@ -20,7 +20,7 @@ public class CancelRegistrationWindow extends JFrame {
 
     public CancelRegistrationWindow() {
         setVisible(true);
-        setTitle("Remove Trainer");
+        setTitle("Cancel Registration");
         setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(CancelRegistrationP);
