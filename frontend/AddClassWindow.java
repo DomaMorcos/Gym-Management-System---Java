@@ -56,7 +56,7 @@ public class AddClassWindow extends JFrame {
                     boolean classExists = false;
                     for (Class classVar : trainerRole.getListOfClasses()) {
                         if (classVar.getSearchKey().equals(classID)) {
-                            JOptionPane.showMessageDialog(AddClassP, "Member with the ID = " + classID + " already exists!");
+                            JOptionPane.showMessageDialog(AddClassP, "Class with the ID = " + classID + " already exists!");
                             classExists = true;
                             break;
                         }
@@ -66,7 +66,7 @@ public class AddClassWindow extends JFrame {
                             int durationINT = Integer.parseInt(duration);
                             int maxParticipantsINT = Integer.parseInt(maxParticipants);
                             trainerRole.addClass(classID, className, trainerID, durationINT, maxParticipantsINT);
-                            JOptionPane.showMessageDialog(AddClassP, "The Member with ID: " + classID + " has been added successfully!");
+                            JOptionPane.showMessageDialog(AddClassP, "The Class with ID: " + classID + " has been added successfully!");
                             TrainerRoleWindow trainerRoleWindow = new TrainerRoleWindow();
                             trainerRoleWindow.setVisible(true);
                             dispose();
