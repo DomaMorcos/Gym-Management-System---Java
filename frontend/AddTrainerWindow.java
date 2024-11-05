@@ -1,7 +1,6 @@
 package frontend;
 
 import backend.AdminRole;
-import backend.TrainerRole;
 import backend.Trainer;
 
 import javax.swing.*;
