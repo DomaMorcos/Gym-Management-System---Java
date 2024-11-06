@@ -4,6 +4,7 @@ import backend.*;
 import backend.Class;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -22,16 +23,18 @@ public class AddClassWindow extends JFrame {
     private JTextField maxParticipantsField;
     private JLabel maxParticipantsLabel;
     private JButton addButton;
+    private JButton backButton;
     private TrainerRole trainerRole;
     private AdminRole adminRole;
 
     public AddClassWindow() {
-        setVisible(true);
+
         setTitle("Add Class");
-        setSize(1920, 1080);
+        setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(AddClassP);
         setLocationRelativeTo(null);
+        setVisible(true);
 
         try {
             this.trainerRole = new TrainerRole();
@@ -50,7 +53,7 @@ public class AddClassWindow extends JFrame {
                 String maxParticipants = maxParticipantsField.getText().trim();
 
                 if (classID.isEmpty() || className.isEmpty() || trainerID.isEmpty() || duration.isEmpty() || maxParticipants.isEmpty()) {
-                    JOptionPane.showMessageDialog(AddClassP, "Fields must be filled.");
+                    JOptionPane.showMessageDialog(AddClassP, "Fields must be filled." ,"Error",JOptionPane.ERROR_MESSAGE);
                     return;
                 } else {
 
@@ -58,7 +61,7 @@ public class AddClassWindow extends JFrame {
                     boolean trainerExists = false;
                     for (Class classVar : trainerRole.getListOfClasses()) {
                         if (classVar.getSearchKey().equals(classID)) {
-                            JOptionPane.showMessageDialog(AddClassP, "Class with the ID = " + classID + " already exists!");
+                            JOptionPane.showMessageDialog(AddClassP, "Class with the ID = " + classID + " already exists!","Error",JOptionPane.ERROR_MESSAGE);
                             classExists = true;
                             break;
                         }
@@ -69,7 +72,7 @@ public class AddClassWindow extends JFrame {
                         }
                     }
                     if(!trainerExists){
-                        JOptionPane.showMessageDialog(AddClassP, "Trainer with the ID = " + trainerID + " does not exist!");
+                        JOptionPane.showMessageDialog(AddClassP, "Trainer with the ID = " + trainerID + " does not exist!","Error",JOptionPane.ERROR_MESSAGE);
 
                     }
                     if (!classExists && trainerExists) {
@@ -88,5 +91,15 @@ public class AddClassWindow extends JFrame {
                 }
             }
         });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TrainerRoleWindow trainerRoleWindow = new TrainerRoleWindow();
+                trainerRoleWindow.setVisible(true);
+                dispose();
+            }
+        });
+
+
     }
 }

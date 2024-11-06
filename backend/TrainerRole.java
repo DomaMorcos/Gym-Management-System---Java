@@ -66,6 +66,7 @@ public class TrainerRole {
             memberClassRegistration.setRegistrationStatus("Active");
             registrationDatabase.insertRecord(memberClassRegistration);
             record.setAvailableSeats(recordAvailableSeats - 1);
+            registrationDatabase.saveToFile();
             return true;
         }
         return false;
@@ -79,12 +80,12 @@ public class TrainerRole {
             
             long daysBetween = ChronoUnit.DAYS.between(memberClass.getRegistrationDate(), dateRightNow);
             System.out.println("Days Between : " + daysBetween);
-            if ((dateRightNow.isAfter(memberClass.getRegistrationDate()) || dateRightNow.isEqual(memberClass.getRegistrationDate())) && daysBetween < 3) {
+            if ((  dateRightNow.isEqual(memberClass.getRegistrationDate())) || (dateRightNow.isAfter(memberClass.getRegistrationDate()) && daysBetween < 3) || dateRightNow.isBefore(memberClass.getRegistrationDate())) {
                 System.out.println("Issuing Refund.");
                 memberClass.setRegistrationStatus("canceled");
                 Class class1 = (Class) classDatabase.getRecord(classID);
                 class1.setAvailableSeats(class1.getAvailableSeats() + 1);
-               // registrationDatabase.deleteRecord(memberClass.getSearchKey());
+               registrationDatabase.deleteRecord(memberClass.getSearchKey());
                 return true;
             } else {
                 System.out.println("Refund is not available because 3 or more days has passed.");

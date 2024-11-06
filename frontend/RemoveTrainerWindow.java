@@ -12,6 +12,7 @@ public class RemoveTrainerWindow extends JFrame {
     private JPanel RemoveTrainerWindow;
     private JFormattedTextField idField;
     private JButton removeButton;
+    private JButton backButton;
     private AdminRole adminRole;
 
     public RemoveTrainerWindow() {
@@ -33,7 +34,7 @@ public class RemoveTrainerWindow extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String id = idField.getText().trim();
                 if(id.isEmpty()){
-                    JOptionPane.showMessageDialog(RemoveTrainerWindow,"Please fill the required field!");
+                    JOptionPane.showMessageDialog(RemoveTrainerWindow,"Please fill the required fields!","Error",JOptionPane.ERROR_MESSAGE);
                 }
                 else{
                     try {
@@ -50,12 +51,20 @@ public class RemoveTrainerWindow extends JFrame {
                             }
                         }
                         if(flag == 0) {
-                            JOptionPane.showMessageDialog(RemoveTrainerWindow, "Trainer with the ID = " + id + " does not exist!");
+                            JOptionPane.showMessageDialog(RemoveTrainerWindow, "Trainer with the ID = " + id + " does not exist!","Error",JOptionPane.ERROR_MESSAGE);
                         }
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
                 }
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AdminRoleWindow adminRoleWindow = new AdminRoleWindow();
+                adminRoleWindow.setVisible(true);
+                dispose();
             }
         });
     }

@@ -13,7 +13,7 @@ public class MainWindow extends JFrame {
     public MainWindow() {
         setVisible(true);
         setTitle("GYM System");
-        setSize(500, 300);
+        setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(mainP);
         setLocationRelativeTo(null);  // Center the window
@@ -41,6 +41,7 @@ public class MainWindow extends JFrame {
         SwingUtilities.invokeLater(() -> {
             MainWindow mainWindow = new MainWindow();
         });
+
     }
 
 }

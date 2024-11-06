@@ -23,7 +23,7 @@ public class ViewClassesWindow extends JFrame {
         ViewClassesP = new JPanel(new BorderLayout());
         setContentPane(ViewClassesP);
         setTitle("View Classes");
-        setSize(1920, 1080);
+        setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 

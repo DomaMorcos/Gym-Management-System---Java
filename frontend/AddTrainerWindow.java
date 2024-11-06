@@ -18,6 +18,7 @@ public class AddTrainerWindow extends JFrame {
     private JTextField specialityField;
     private JTextField phoneNumberField;
     private AdminRole adminRole;
+    private JButton backButton;
 
     public AddTrainerWindow() {
 
@@ -44,14 +45,14 @@ public class AddTrainerWindow extends JFrame {
                 String phoneNumber = phoneNumberField.getText().trim();
 
                 if(id.isEmpty() || name.isEmpty() || email.isEmpty() || speciality.isEmpty() || phoneNumber.isEmpty()) {
-                    JOptionPane.showMessageDialog(AddTrainerWindow, "Please fill all the required fields!");
+                    JOptionPane.showMessageDialog(AddTrainerWindow, "Please fill all the required fields!" , "Error", JOptionPane.ERROR_MESSAGE);
 
                 }
                 else {
                     boolean trainerExists = false;
                     for (Trainer trainer : adminRole.getListOfTrainers()) {
                         if (trainer.getSearchKey().equals(id)) {
-                            JOptionPane.showMessageDialog(AddTrainerWindow, "Trainer with the ID = " + id + " already exists!");
+                            JOptionPane.showMessageDialog(AddTrainerWindow, "Trainer with the ID = " + id + " already exists!", "Error", JOptionPane.ERROR_MESSAGE);
                             trainerExists = true;
                             break;
                         }
@@ -71,5 +72,14 @@ public class AddTrainerWindow extends JFrame {
 
             }
         });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AdminRoleWindow adminRoleWindow = new AdminRoleWindow();
+                adminRoleWindow.setVisible(true);
+                dispose();
+            }
+        });
     }
+
 }

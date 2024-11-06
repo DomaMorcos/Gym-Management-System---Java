@@ -25,7 +25,7 @@ public class TrainerRoleWindow extends JFrame {
     public TrainerRoleWindow() {
         setVisible(true);
         setTitle("Trainer Role");
-        setSize(500, 300);
+        setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(TrainerRoleP);
         setLocationRelativeTo(null);

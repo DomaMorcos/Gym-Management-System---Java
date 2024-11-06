@@ -23,8 +23,8 @@ public class ViewRegistrationsWindow extends JFrame {
     public ViewRegistrationsWindow() {
         ViewRegistrationsP = new JPanel(new BorderLayout());
         setContentPane(ViewRegistrationsP);
-        setTitle("View Classes");
-        setSize(1920, 1080);
+        setTitle("View Registrations");
+        setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -52,7 +52,7 @@ public class ViewRegistrationsWindow extends JFrame {
         setVisible(true);
     }
     private void createTable() {
-        String[] columnNames = {"Member ID","Class ID","Registration Date"};
+        String[] columnNames = {"Member ID","Class ID","Status","Registration Date"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         registrationsTable = new JTable(model);
         tableScrollPane = new JScrollPane(registrationsTable);

@@ -4,6 +4,7 @@ import backend.Member;
 import backend.TrainerRole;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -24,15 +25,17 @@ public class AddMemberWindow extends JFrame {
     private JLabel statusLabel;
     private JTextField statusField;
     private JButton addButton;
+    private JButton backButton;
     private TrainerRole trainerRole;
 
     public AddMemberWindow() {
-        setVisible(true);
+
         setTitle("Add Member");
-        setSize(500, 300);
+        setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setContentPane(AddMemberP);
         setLocationRelativeTo(null);
+        setVisible(true);
 
         try {
             this.trainerRole = new TrainerRole();
@@ -51,13 +54,13 @@ public class AddMemberWindow extends JFrame {
                 String status = statusField.getText().trim();
 
                 if (id.isEmpty() || name.isEmpty() || email.isEmpty() || phoneNumber.isEmpty() || membershipType.isEmpty() || status.isEmpty()) {
-                    JOptionPane.showMessageDialog(AddMemberP, "Fields must be filled.");
+                    JOptionPane.showMessageDialog(AddMemberP, "Fields must be filled." , "Error" , JOptionPane.ERROR_MESSAGE);
                     return;
                 }                else {
                     boolean memberExists = false;
                     for (Member member : trainerRole.getListOfMembers()) {
                         if (member.getSearchKey().equals(id)) {
-                            JOptionPane.showMessageDialog(AddMemberP, "Member with the ID = " + id + " already exists!");
+                            JOptionPane.showMessageDialog(AddMemberP, "Member with the ID = " + id + " already exists!","Error",JOptionPane.ERROR_MESSAGE);
                             memberExists = true;
                             break;
                         }
@@ -74,6 +77,14 @@ public class AddMemberWindow extends JFrame {
                         }
                     }
                 }
+            }
+        });
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                TrainerRoleWindow trainerRoleWindow = new TrainerRoleWindow();
+                trainerRoleWindow.setVisible(true);
+                dispose();
             }
         });
     }

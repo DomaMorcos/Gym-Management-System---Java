@@ -22,7 +22,7 @@ public class ViewMembersWindow extends JFrame {
         ViewMembersP = new JPanel(new BorderLayout());
         setContentPane(ViewMembersP);
         setTitle("View Members");
-        setSize(1920, 1080);
+        setSize(1280, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
